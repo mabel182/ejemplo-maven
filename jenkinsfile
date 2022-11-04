@@ -25,6 +25,7 @@ pipeline {
                 echo 'TODO: run'
                 sh 'nohup bash ./mvnw spring-boot:run &'            
             }
+            cleanWs()
         }
     }
 }
