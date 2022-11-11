@@ -12,7 +12,7 @@ pipeline {
             steps {
                  script {      
                 withSonarQubeEnv('Sonar') {
-                sh "${scannerHome}/bin/sonar-scanner -Dsonar.java.binaries=ejemplo-maven/target/classes -Dsonar.sources=ejemplo-maven/src -Dsonar.projectKey=ejemplo-maven -Dsonar.projectName=ejemplo-maven -Dsonar.projectVersion=${version} -Dsonar.language=java"
+                sh 'mvn clean package sonar:sonar'
                 }
                 }
             }
