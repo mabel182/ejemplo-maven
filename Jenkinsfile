@@ -8,6 +8,16 @@ pipeline {
                 sh './mvnw clean compile -e'
             }
         }
+        stage('Sonar') {
+            steps {
+                 script {      
+                // requires SonarQube Scanner 2.8+
+                scannerHome = tool 'Sonarito'
+                }
+                withSonarQubeEnv('Sonar', envOnly: true) {
+                sh "${scannerHome}/bin/sonar-scanner -Dsonar.java.binaries=ejemplo-maven/target/classes -Dsonar.sources=ejemplo-maven/src -Dsonar.projectKey=ejemplo-maven -Dsonar.projectName=ejemplo-maven -Dsonar.projectVersion=${version} -Dsonar.language=java"
+            }
+        }
         stage('Test') {
             steps {
                 echo 'TODO: test'
