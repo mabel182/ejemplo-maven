@@ -12,7 +12,7 @@ pipeline {
             steps {
                  script {      
                 withSonarQubeEnv('Sonar') {
-                sh 'mvn clean package sonar:sonar'
+                sh './mvnw clean package sonar:sonar'
                 }
                 }
             }
