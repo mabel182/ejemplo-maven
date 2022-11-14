@@ -8,15 +8,6 @@ pipeline {
                 sh './mvnw clean compile -e'
             }
         }
-        stage('Sonar') {
-            steps {
-                 script {      
-                withSonarQubeEnv('Sonar') {
-                sh './mvnw clean package sonar:sonar'
-                }
-                }
-            }
-        }
         stage('Test') {
             steps {
                 echo 'TODO: test'
@@ -27,6 +18,15 @@ pipeline {
             steps {
                 echo 'TODO: package'
                 sh './mvnw clean package -e'           
+            }
+        }
+        stage('Sonar') {
+            steps {
+                 script {      
+                withSonarQubeEnv('Sonar') {
+                sh './mvnw clean package sonar:sonar'
+                   }
+                }
             }
         }
         stage('Run') {
