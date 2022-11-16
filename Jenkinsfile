@@ -1,38 +1,38 @@
 pipeline {
     agent any
-
+    tools {
+    maven 'Maven-3.8.6'
+    }
     stages {
         stage('Build') {
             steps {
                 echo 'TODO: build'
-                sh './mvnw clean compile -e'
+                sh 'mvn clean compile -e'
             }
         }
         stage('Test') {
             steps {
                 echo 'TODO: test'
-                sh './mvnw clean test -e'
+                sh 'mvn clean test -e'
             }
         }
         stage('Package') {
             steps {
                 echo 'TODO: package'
-                sh './mvnw clean package -e'           
+                sh 'mvn clean package -e'           
             }
         }
         stage('Sonar') {
             steps {
                  script {      
                 withSonarQubeEnv('Sonar') {
-                sh './mvnw clean package sonar:sonar'
+                sh 'mvn clean package sonar:sonar'
                    }
                 }
             }
         }
-        stage('Run') {
+        stage('Clean Workspace') {
             steps {
-                echo 'TODO: run'
-                sh 'nohup bash ./mvnw spring-boot:run &'         
                 cleanWs()
             }
         }
