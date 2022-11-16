@@ -6,8 +6,8 @@ pipeline {
       stages {
         stage('Build') {
             steps {
-                echo 'TODO: build'
-                sh 'mvn clean compile -e'
+                echo 'TODO: build install'
+                sh 'mvn clean install'
             }
         }
        // stage('Test') {
@@ -16,12 +16,12 @@ pipeline {
        //         sh 'mvn clean test -e'
         //    }
        // }
-        stage('Package') {
-            steps {
-                echo 'TODO: package'
-                sh 'mvn clean package -e'           
-            }
-        }
+      //  stage('Package') {
+     //       steps {
+       //         echo 'TODO: package'
+      //          sh 'mvn clean package -e'           
+        //    }
+      //  }
         stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
