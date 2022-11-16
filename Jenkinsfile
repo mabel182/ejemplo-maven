@@ -1,3 +1,4 @@
+def WORKSPACE = "pipeline_nexus"
 pipeline {
     agent any
     tools {
