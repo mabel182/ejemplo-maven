@@ -27,8 +27,8 @@ pipeline {
             steps {
                 script {
                    nexusPublisher nexusInstanceId: 'Nexus-Repository', nexusRepositoryId: 'devops-usach-nexus', 
-					packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '/var/jenkins_home/.m2/repository/com/devopsusach2020/DevOpsUsach2020/0.0.1//build/DevOpsUsach2020-0.0.1.jar']],
-					mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
+			packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '${workspace}/build/DevOpsUsach2020-0.0.1.jar']],
+		        mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
                 }
             }
         }
