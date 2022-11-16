@@ -1,4 +1,4 @@
-def workspace = "pipeline_nexus"
+//def workspace = "pipeline_nexus"
 pipeline {
     agent any
     tools {
