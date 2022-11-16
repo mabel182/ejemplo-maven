@@ -9,6 +9,7 @@ pipeline {
         NEXUS_URL = "http://nexus:8081"
         NEXUS_REPOSITORY = "devops-usach-nexus"
         NEXUS_CREDENTIAL_ID = "nexus"
+    }
     stages {
       //  stage('Build') {
        //     steps {
