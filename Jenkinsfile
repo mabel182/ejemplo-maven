@@ -4,12 +4,12 @@ pipeline {
     maven 'Maven-3.8.6'
     }
       stages {
-      //  stage('Build') {
-       //     steps {
-        //        echo 'TODO: build'
-        //        sh 'mvn clean compile -e'
-        //    }
-       // }
+        stage('Build') {
+            steps {
+                echo 'TODO: build'
+                sh 'mvn clean compile -e'
+            }
+        }
        // stage('Test') {
         //    steps {
        //         echo 'TODO: test'
