@@ -11,18 +11,13 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-       // stage('Test') {
-        //    steps {
-       //         echo 'TODO: test'
-       //         sh 'mvn clean test -e'
-        //    }
-       // }
-      //  stage('Package') {
-     //       steps {
-       //         echo 'TODO: package'
-      //          sh 'mvn clean package -e'           
-        //    }
-      //  }
+      }
+        stage('Package') {
+            steps {
+                echo 'TODO: package'
+                sh 'mvn clean package -e'           
+            }
+        }
         stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
@@ -32,15 +27,15 @@ pipeline {
                 }
             }
         }
-        //stage('Sonar') {
-       //     steps {
-        //         script {      
-         //       withSonarQubeEnv('Sonar') {
-          //      sh 'mvn clean package sonar:sonar'
-         //          }
-         //       }
-        //    }
-      //  }
+        stage('Sonar') {
+            steps {
+                 script {      
+                withSonarQubeEnv('Sonar') {
+                sh 'mvn clean package sonar:sonar -Dsonar.projectKey=ejemplo-nexus -Dsonar.java.binaries=build'
+                   }
+                }
+            }
+        }
         stage('Clean Workspace') {
             steps {
                 cleanWs()
