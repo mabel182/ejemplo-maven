@@ -17,15 +17,15 @@ pipeline {
                 sh 'mvn clean package -e'           
             }
         }
-        stage('Sonar') {
-            steps {
-                 script {      
-                withSonarQubeEnv('Sonar') {
-                sh 'mvn clean package sonar:sonar -Dsonar.projectKey=ejemplo-nexus -Dsonar.java.binaries=build'
-                   }
-                }
-            }
-        }
+       // stage('Sonar') {
+       //     steps {
+      //           script {      
+       //         withSonarQubeEnv('Sonar') {
+       //         sh 'mvn clean package sonar:sonar -Dsonar.projectKey=ejemplo-nexus -Dsonar.java.binaries=build'
+       //            }
+       //         }
+       //     }
+      //  }
 	stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
