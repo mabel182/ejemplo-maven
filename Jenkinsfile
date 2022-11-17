@@ -11,7 +11,6 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-      }
         stage('Package') {
             steps {
                 echo 'TODO: package'
