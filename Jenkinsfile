@@ -7,31 +7,33 @@ pipeline {
       stages {
         stage('Build') {
             steps {
-                echo 'TODO: build install'
-                sh 'mvn clean install'
-            }
+                script {
+			    try {
+					slackSend channel: '#builds-jenkins', color: 'good', message: "Start job: ${JOB_NAME} ${BUILD_NUMBER}"
+					echo 'Build'
+					sh 'mvn clean install'
+				}
+			    catch(all) {
+					slackSend channel: '#builds-jenkins', color: 'danger', message: "Fail job: ${JOB_NAME} ${BUILD_NUMBER}"
+				}
+			}	
+		}
         }
-        stage('Package') {
+        stage('Sonar') {
             steps {
-                echo 'TODO: package'
-                sh 'mvn clean package -e'           
+                 script {      
+				withSonarQubeEnv('Sonar') {
+				sh 'mvn clean package sonar:sonar -Dsonar.projectKey=lab-04 -Dsonar.java.binaries=build'
+                   }
+                }
             }
         }
-       // stage('Sonar') {
-       //     steps {
-      //           script {      
-       //         withSonarQubeEnv('Sonar') {
-       //         sh 'mvn clean package sonar:sonar -Dsonar.projectKey=ejemplo-nexus -Dsonar.java.binaries=build'
-       //            }
-       //         }
-       //     }
-      //  }
 	stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
                    nexusPublisher nexusInstanceId: 'Nexus-Repository', nexusRepositoryId: 'devops-usach-nexus', 
 			packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "${WORKSPACE}/build/DevOpsUsach2020-0.0.1.jar"]],
-		        mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '1.0.0']]]
+		        mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '2.0.0']]]
                 }
             }
         }  
@@ -50,4 +52,3 @@ pipeline {
         }
     }
 }
-
