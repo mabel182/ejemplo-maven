@@ -9,12 +9,12 @@ pipeline {
             steps {
                 script {
 			    try {
-					slackSend channel: '#grupo2', color: 'good', message: "Start job: ${JOB_NAME} ${BUILD_NUMBER} SUCCESS"
+					slackSend channel: '#grupo2', color: 'good', message: "Start job: ${BRANCH_NAME} ${JOB_NAME} ${BUILD_NUMBER} SUCCESS"
 					echo 'Build'
 					sh 'mvn clean install'
 				}
 			    catch(all) {
-					slackSend channel: '#grupo2', color: 'danger', message: "Fail job: ${JOB_NAME} ${BUILD_NUMBER} FAIL"
+					slackSend channel: '#grupo2', color: 'danger', message: "Fail job: ${BRANCH_NAME} ${JOB_NAME} ${BUILD_NUMBER} FAIL"
 				}
 			}	
 		}
