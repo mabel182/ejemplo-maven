@@ -51,10 +51,10 @@ pipeline {
         //  }
                
         //}      
-       // stage('Clean Workspace') {
-       //     steps {
-       //         cleanWs()
-        //    }
-       // }
+        stage('Clean Workspace') {
+            steps {
+               cleanWs()
+            }
+        }
     }
 }
