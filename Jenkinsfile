@@ -64,7 +64,7 @@ pipeline {
 				//sh 'git checkout main'
 				//sh 'git merge develop'
 				//sh 'git commit -am "Merged develop branch to main'
-				sh "git push main"
+				sh "git push origin HEAD main"
 			}
 		    }
 		}
