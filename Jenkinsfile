@@ -61,9 +61,9 @@ pipeline {
   				sh 'git config --global user.name "Mabel Contreras"'
 				
 				sh 'git tag -a tagName -m "V1.0.0"'
-				sh 'git merge develop'
+				sh 'git merge origin/develop'
 				sh 'git commit -am "Merged develop branch to main'
-				sh "git push origin main"
+				sh "git push main"
 			}
 		    }
 		}
