@@ -61,7 +61,7 @@ pipeline {
   				sh 'git config --global user.name "Mabel Contreras"'
 				
 				sh 'git tag -a "Release1.0.${BUILD_NUMBER}" -m "V1.0.${BUILD_NUMBER}"'
-				sh 'git merge origin/develop'
+				sh 'git merge develop'
 				sh 'git commit -am "Merged develop branch to main'
 				sh "git push main"
 			}
