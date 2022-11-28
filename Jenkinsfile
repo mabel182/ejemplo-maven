@@ -57,7 +57,10 @@ pipeline {
 			withCredentials([
 			    gitUsernamePassword(credentialsId: 'Github', gitToolName: 'Default')
 			]) {
-			   	sh 'git tag -a tagName -m "V1.0.0"'
+			   	sh git config --global user.email "mabel.contreras182@gmail.com"
+  				sh git config --global user.name "Mabel Contreras"
+				
+				sh 'git tag -a tagName -m "V1.0.0"'
 				sh 'git merge develop'
 				sh 'git commit -am "Merged develop branch to main'
 				sh "git push origin main"
